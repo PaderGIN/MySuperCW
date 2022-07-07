@@ -10,7 +10,8 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17"
+      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17
+"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.RegistrationPageController">
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
@@ -75,6 +76,21 @@
                         <Font name="DejaVu Serif Bold" size="20.0"/>
                     </font>
                 </Label>
+                <Button fx:id="EnterButtonToUserPage" graphicTextGap="10.0" layoutX="350.0" layoutY="392.0"
+                        mnemonicParsing="false" onAction="#switchToUserPage" prefHeight="50.0" prefWidth="215.0"
+                        style="-fx-background-color: #DC143C;" text="Перейти к записям" textAlignment="CENTER"
+                        visible="false" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="20.0"
+                        AnchorPane.topAnchor="450.0">
+                    <font>
+                        <Font name="Calibri Bold" size="21.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <effect>
+                        <DropShadow/>
+                    </effect>
+                </Button>
             </children>
         </AnchorPane>
     </children>

@@ -6,23 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class RegistrationPageController {
+public class RegistrationPageController implements Userable{
+
+    static User user;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private TextField nameField;
+
+    @FXML
+    private Button EnterButtonToUserPage;
 
     @FXML
     private TextField loginField;
@@ -46,11 +53,20 @@ public class RegistrationPageController {
     }
 
     @FXML
+    private void switchToUserPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     private void SignUpButton(ActionEvent actionEvent) throws Exception {
-        String nameStr = nameField.getText();
-        String loginStr = loginField.getText();
-        String passwordStr_1 = passwordField1.getText();
-        String passwordStr_2 = passwordField2.getText();
+        String nameStr = nameField.getText().trim();
+        String loginStr = loginField.getText().trim();
+        String passwordStr_1 = passwordField1.getText().trim();
+        String passwordStr_2 = passwordField2.getText().trim();
 
         if (!passwordStr_1.equals(passwordStr_2)) {
             notifycationLabel.setText("Пароли должны совпадать!");
@@ -61,21 +77,28 @@ public class RegistrationPageController {
             notifycationLabel.setText("Все поля должны быть заполнены");
         } else {
 
-            SignUpUser(nameStr, passwordStr_1, loginStr);
+            user = new User(nameStr, passwordStr_1, loginStr);
+            SignUpUser(user);
 
         }
     }
 
-    private void SignUpUser(String nameStr, String passwordStr_1, String loginStr) throws SQLException {
-        try{
+    private void SignUpUser(User user) throws Exception {
+        try {
             Statement statement = DBconnector.getDBConnection().createStatement();
             statement.executeUpdate("INSERT Users(name, password, role_level, login) VALUES" +
-                    "('" + nameStr + "','" + passwordStr_1 + "','simple','" + loginStr + "');");
+                    "('" + user.getName() + "','" + user.getPassword() + "','simple','" + user.getLogin() + "');");
             notifycationLabel.setText("Пользователь успешно зарегистрирован!");
-        } catch (Exception exception){
+            EnterButtonToUserPage.setVisible(true);
+
+        } catch (SQLException exception) {
             notifycationLabel.setText("Пользователь с таким логином уже есть! Введите другой!");
         }
 
     }
 
+    @Override
+    public User getUser() {
+        return user;
+    }
 }

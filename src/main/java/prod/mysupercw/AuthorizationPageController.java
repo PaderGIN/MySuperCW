@@ -3,6 +3,8 @@ package prod.mysupercw;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AuthorizationPageController {
+public class AuthorizationPageController implements Userable{
 
+    User user;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -48,7 +51,7 @@ public class AuthorizationPageController {
     private void EnterCheckLoginPassword(ActionEvent event) {
         String loginStr = loginField.getText().trim();
         String password = passwordField.getText().trim();
-        //statusLabel.setText(loginStr, password);
+
     }
 
 
@@ -58,4 +61,8 @@ public class AuthorizationPageController {
 
     }
 
+    @Override
+    public User getUser() {
+        return user;
+    }
 }
