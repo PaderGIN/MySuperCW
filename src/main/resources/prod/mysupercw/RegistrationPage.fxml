@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="prod.mysupercw.RegistrationPageController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.RegistrationPageController">
+    <children>
+        <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
+            <children>
+                <Label layoutX="309.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="282.0"
+                       text="Регистрация" textAlignment="CENTER">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="40.0"/>
+                    </font>
+                </Label>
+                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0"
+                        mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0"
+                        style="-fx-background-color: #DC143C;" text="❮">
+                    <font>
+                        <Font name="Calibri Bold" size="27.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <effect>
+                        <DropShadow/>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="510.0" prefWidth="900.0">
+            <children>
+                <Label text="Введите данные" textAlignment="CENTER" AnchorPane.leftAnchor="340.0"
+                       AnchorPane.topAnchor="75.0">
+                    <font>
+                        <Font name="DejaVu Serif Bold" size="24.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="loginField" prefHeight="34.0" prefWidth="206.0" promptText="Логин..."
+                           style="-fx-border-color: silver;" AnchorPane.leftAnchor="180.0"
+                           AnchorPane.topAnchor="220.0"/>
+                <TextField fx:id="nameField" prefHeight="34.0" prefWidth="206.0" promptText="Имя..."
+                           style="-fx-border-color: silver;" AnchorPane.leftAnchor="180.0"
+                           AnchorPane.topAnchor="150.0"/>
+                <Button fx:id="EnterButton" graphicTextGap="10.0" layoutX="340.0" mnemonicParsing="false"
+                        onAction="#SignUpButton" prefHeight="50.0" prefWidth="215.0"
+                        style="-fx-background-color: #FFA07A;" text="Зарегистрироваться" textAlignment="CENTER"
+                        AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="300.0">
+                    <font>
+                        <Font name="Calibri Bold" size="21.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <effect>
+                        <DropShadow/>
+                    </effect>
+                </Button>
+                <TextField fx:id="passwordField1" layoutX="190.0" layoutY="160.0" prefHeight="34.0" prefWidth="206.0"
+                           promptText="Пароль..." style="-fx-border-color: silver;" AnchorPane.leftAnchor="530.0"
+                           AnchorPane.topAnchor="150.0"/>
+                <TextField fx:id="passwordField2" layoutX="540.0" layoutY="160.0" prefHeight="34.0" prefWidth="206.0"
+                           promptText="Повторите пароль..." style="-fx-border-color: silver;"
+                           AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="220.0"/>
+                <Label fx:id="notifycationLabel" layoutX="385.0" layoutY="392.0" textAlignment="CENTER">
+                    <font>
+                        <Font name="DejaVu Serif Bold" size="20.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

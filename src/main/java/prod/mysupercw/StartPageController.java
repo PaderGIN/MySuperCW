@@ -17,13 +17,9 @@ public class StartPageController {
     @FXML
     private Label welcomeText;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
-    public void switchToAuthorization(ActionEvent event) throws IOException {
+    private void switchToAuthorization(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AuthorizationPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -32,7 +28,7 @@ public class StartPageController {
     }
 
     @FXML
-    public void switchToGuestMode(ActionEvent event) throws IOException {
+    private void switchToGuestMode(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("GuestPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -41,7 +37,7 @@ public class StartPageController {
     }
 
     @FXML
-    public void switchToRegistration(ActionEvent event) throws IOException {
+    private void switchToRegistration(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("RegistrationPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
