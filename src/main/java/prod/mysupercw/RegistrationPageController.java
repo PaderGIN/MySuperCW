@@ -53,8 +53,8 @@ public class RegistrationPageController implements Userable{
     }
 
     @FXML
-    private void switchToUserPage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
+    private void switchToAuthorization(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AuthorizationPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -77,7 +77,7 @@ public class RegistrationPageController implements Userable{
             notifycationLabel.setText("Все поля должны быть заполнены");
         } else {
 
-            user = new User(nameStr, passwordStr_1, loginStr);
+            user = new User(nameStr, loginStr, passwordStr_1);
             SignUpUser(user);
 
         }

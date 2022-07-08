@@ -6,7 +6,7 @@ public class UserPageController{
     static User user;
 
     public void getUserFrom(){
-        user = RegistrationPageController.user;
+        user = AuthorizationPageController.user;
     }
 
 
