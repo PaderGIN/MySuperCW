@@ -2,6 +2,7 @@ package prod.mysupercw;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -18,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class RegistrationPageController implements Userable{
+public class RegistrationPageController implements Userable {
 
     static User user;
 
@@ -85,9 +86,15 @@ public class RegistrationPageController implements Userable{
 
     private void SignUpUser(User user) throws Exception {
         try {
-            Statement statement = DBconnector.getDBConnection().createStatement();
-            statement.executeUpdate("INSERT Users(name, password, role_level, login) VALUES" +
-                    "('" + user.getName() + "','" + user.getPassword() + "','simple','" + user.getLogin() + "');");
+            PreparedStatement prStatement;
+            prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Users(name, password, role_level, login) VALUES" +
+                    "(?,?,'simple',?);");
+            prStatement.setString(1, user.getName());
+            prStatement.setString(2, user.getPassword());
+            prStatement.setString(3, user.getLogin());
+            prStatement.executeUpdate();
+//            statement.executeUpdate("INSERT Users(name, password, role_level, login) VALUES" +
+//                    "('" + user.getName() + "','" + user.getPassword() + "','simple','" + user.getLogin() + "');");
             notifycationLabel.setText("Пользователь успешно зарегистрирован!");
             EnterButtonToUserPage.setVisible(true);
 

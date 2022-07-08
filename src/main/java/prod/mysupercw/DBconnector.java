@@ -5,8 +5,8 @@ import java.sql.*;
 public class DBconnector {
     public static void main(String[] args) throws SQLException {
         loginToGleb();
-//        ResultSet resultSet = (getDBConnection().createStatement().executeQuery("SELECT * FROM Teacher;"));
-//        if (resultSet.next()) System.out.println(resultSet.getInt("id")+ " " + resultSet.getString("name"));
+        ResultSet resultSet = (getDBConnection().createStatement().executeQuery("SELECT * FROM Teacher;"));
+        if (resultSet.next()) System.out.println(resultSet.getInt("id")+ " " + resultSet.getString("name"));
     }
     private static void loginToGleb() {
         try {

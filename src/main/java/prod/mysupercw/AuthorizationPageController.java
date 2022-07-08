@@ -2,9 +2,9 @@ package prod.mysupercw;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import Models.User;
@@ -22,10 +22,10 @@ import javafx.stage.Stage;
 
 public class AuthorizationPageController implements Userable {
 
-    static User user;
+    private static User user;
     private Stage stage;
     private Scene scene;
-    private Parent root;
+    private Parent parent;
 
     @FXML
     private ResourceBundle resources;
@@ -45,23 +45,39 @@ public class AuthorizationPageController implements Userable {
 
     @FXML
     private void switchToStart(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
+        parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
     }
 
-    private void switchToUserPage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
+//    private void switchToUserPage(ActionEvent event) throws IOException {
+//        parent = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+    private void switchToUserPageWithUser(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("UserPage.fxml"));
+        parent = loader.load();
+        scene = new Scene(parent);
+        UserPageController controller = loader.getController();
+        try {
+            controller.initAuthUser(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    private void EnterCheckLoginPassword(ActionEvent event) {
+    private void EnterCheckLoginPassword(ActionEvent event)  {
         String loginStr = loginField.getText().trim();
         String passwordStr = passwordField.getText().trim();
 
@@ -74,20 +90,26 @@ public class AuthorizationPageController implements Userable {
         }
     }
 
-    private void CheckAuthorization(User user, ActionEvent event) {
+    private void CheckAuthorization(User user, ActionEvent event)  {
         try {
-            Statement statement = DBconnector.getDBConnection().createStatement();
-            statement.executeQuery("SELECT Users.login" +
+            PreparedStatement statement = DBconnector.getDBConnection().prepareStatement("SELECT Users.login" +
                     " FROM Users" +
-                    " WHERE login = '" + user.getLogin() + "';");
+                    " WHERE login = ? and Users.password = ?;");
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            statement.executeQuery();
             ResultSet resultSet = statement.getResultSet();
             if (resultSet.next()) {
-                switchToUserPage(event);
+                switchToUserPageWithUser(event);
             } else {
                 statusLabel.setText("Пользователя с такими данными нет!");
             }
 
-        } catch (SQLException | IOException exception) {}
+        } catch (SQLException | IOException exception) {
+            System.out.println(exception);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
