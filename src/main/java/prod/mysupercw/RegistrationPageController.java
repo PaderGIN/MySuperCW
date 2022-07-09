@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import Models.User;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -76,19 +78,29 @@ public class RegistrationPageController implements Userable {
                 passwordStr_1.trim().equals("") ||
                 passwordStr_2.trim().equals("")) {
             notifycationLabel.setText("Все поля должны быть заполнены");
-        } else {
 
+        } else if (!test(nameStr)){
+            notifycationLabel.setText("В поле имя не могут быть числа/спецсимволы!");
+
+        } else {
             user = new User(nameStr, loginStr, passwordStr_1);
             SignUpUser(user);
-
+        }
+    }
+    private static boolean test(String str) {
+        String text = str;
+        if (Pattern.matches("[a-zA-Zа-яА-Я .]+", text)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     private void SignUpUser(User user) throws Exception {
         try {
             PreparedStatement prStatement;
-            prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Users(name, password, role_level, login) VALUES" +
-                    "(?,?,'simple',?);");
+            prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Users(name, password, login) VALUES" +
+                    "(?,?,?);");
             prStatement.setString(1, user.getName());
             prStatement.setString(2, user.getPassword());
             prStatement.setString(3, user.getLogin());
