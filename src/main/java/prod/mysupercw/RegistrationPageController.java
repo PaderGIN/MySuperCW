@@ -1,11 +1,8 @@
 package prod.mysupercw;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import Models.User;
@@ -15,37 +12,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class RegistrationPageController implements Userable {
+public class RegistrationPageController {
 
     static User user;
-
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private TextField nameField;
-
     @FXML
     private Button EnterButtonToUserPage;
-
     @FXML
     private TextField loginField;
-
     @FXML
     private Label notifycationLabel;
-
     @FXML
     private TextField passwordField1;
-
     @FXML
     private TextField passwordField2;
-
     @FXML
     private void switchToStart(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
@@ -96,7 +85,7 @@ public class RegistrationPageController implements Userable {
         }
     }
 
-    private void SignUpUser(User user) throws Exception {
+    private void SignUpUser(User user) {
         try {
             PreparedStatement prStatement;
             prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Users(name, password, login) VALUES" +
@@ -113,11 +102,6 @@ public class RegistrationPageController implements Userable {
         } catch (SQLException exception) {
             notifycationLabel.setText("Пользователь с таким логином уже есть! Введите другой!");
         }
-
     }
 
-    @Override
-    public User getUser() {
-        return user;
-    }
 }

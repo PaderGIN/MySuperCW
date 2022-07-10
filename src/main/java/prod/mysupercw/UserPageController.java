@@ -91,7 +91,7 @@ public class UserPageController {
         return ans;
     }
 
-    private static int countQuotesByUser(User user) throws Exception {
+    private static int countQuotesByUser(User user) throws SQLException {
         int ans = 0;
         PreparedStatement statement = DBconnector
                 .getDBConnection()
@@ -167,13 +167,11 @@ public class UserPageController {
     }
 
     @FXML
-    void changeLogin(ActionEvent event) throws SQLException {
+    void changeLogin(ActionEvent event) {
         String loginStr = NewLoginField.getText().trim();
         if (loginStr.trim().equals("")) {
             statusLabel.setText("Все поля должны быть заполнены");
         } else {
-            String t_name = getNameFromLogin(authUser);
-            String t_pass = getPasswordFromLogin(authUser);
             try {
                 PreparedStatement prStatement;
                 prStatement = DBconnector.getDBConnection().prepareStatement("UPDATE Users SET login = ? WHERE id = ? ;");

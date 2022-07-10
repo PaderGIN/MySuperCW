@@ -6,4 +6,6 @@ module prod.mysupercw {
 
     opens prod.mysupercw to javafx.fxml;
     exports prod.mysupercw;
+    opens Models to javafx.fxml;
+    exports Models;
 }

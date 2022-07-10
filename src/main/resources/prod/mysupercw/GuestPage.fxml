@@ -38,16 +38,16 @@
                 </Button>
             </children>
         </AnchorPane>
-        <TableView fx:id="GuestTable" prefHeight="469.0" prefWidth="680.0">
+        <TableView fx:id="GuestTable" prefHeight="469.0" prefWidth="732.0">
             <columns>
-                <TableColumn prefWidth="92.80002021789551" text="Пользователь"/>
-                <TableColumn prefWidth="248.79998016357422" text="Цитата"/>
-                <TableColumn prefWidth="124.79998779296875" text="Преподаватель"/>
-                <TableColumn prefWidth="124.00003051757812" text="Предмет"/>
-                <TableColumn prefWidth="90.39996337890625" text="Дата цитаты"/>
+                <TableColumn fx:id="UserName_Col" prefWidth="118.4000186920166" text="Пользователь"/>
+                <TableColumn fx:id="Quote_Col" prefWidth="327.1999816894531" text="Цитата"/>
+                <TableColumn fx:id="Teacher_Col" prefWidth="161.60006713867188" text="Преподаватель"/>
+                <TableColumn fx:id="Subject_Col" prefWidth="150.39996337890625" text="Предмет"/>
+                <TableColumn fx:id="Date_Col" prefWidth="104.7999267578125" text="Дата цитаты"/>
             </columns>
             <VBox.margin>
-                <Insets left="20.0" right="200.0" top="20.0"/>
+                <Insets left="20.0" right="20.0" top="20.0"/>
             </VBox.margin>
         </TableView>
     </children>

@@ -20,29 +20,23 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class AuthorizationPageController implements Userable {
-
+public class AuthorizationPageController {
     private static User user;
     private Stage stage;
     private Scene scene;
     private Parent parent;
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
     @FXML
     private Button EnterButton;
     @FXML
     private TextField loginField;
-
     @FXML
     private Label statusLabel;
-
     @FXML
     private TextField passwordField;
-
     @FXML
     private void switchToStart(ActionEvent event) throws IOException {
         parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
@@ -52,13 +46,6 @@ public class AuthorizationPageController implements Userable {
         stage.show();
     }
 
-//    private void switchToUserPage(ActionEvent event) throws IOException {
-//        parent = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(parent);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
     private void switchToUserPageWithUser(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("UserPage.fxml"));
@@ -111,15 +98,6 @@ public class AuthorizationPageController implements Userable {
             throw new RuntimeException(e);
         }
     }
-
-
     @FXML
-    void initialize() {
-
-    }
-
-    @Override
-    public User getUser() {
-        return user;
-    }
+    void initialize() {}
 }
