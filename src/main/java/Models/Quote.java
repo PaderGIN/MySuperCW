@@ -9,12 +9,14 @@ public class Quote {
     private String date_of_said;
 
     public Quote(
-                 String user_name,
-                 String q_text,
-                 String teacher_name,
-                 String subject_name,
-                 String date_of_said
+            int id,
+            String user_name,
+            String q_text,
+            String teacher_name,
+            String subject_name,
+            String date_of_said
     ) {
+        this.id = id;
         this.user_name = user_name;
         this.q_text = q_text;
         this.teacher_name = teacher_name;

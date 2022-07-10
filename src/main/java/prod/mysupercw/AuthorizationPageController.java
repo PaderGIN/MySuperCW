@@ -21,12 +21,15 @@ import javafx.stage.Stage;
 
 
 public class AuthorizationPageController {
+
     private static User user;
     private Stage stage;
     private Scene scene;
     private Parent parent;
+
     @FXML
     private ResourceBundle resources;
+
     @FXML
     private URL location;
     @FXML

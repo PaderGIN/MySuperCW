@@ -21,10 +21,6 @@ public class User {
         this.password = password;
     }
 
-    public User(String login) {
-        this.login = login;
-    }
-
     public User(String nameStr, String loginStr, String passwordStr_1) {
         this.name = nameStr;
         this.login = loginStr;

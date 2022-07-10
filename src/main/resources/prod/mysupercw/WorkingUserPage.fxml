@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.WorkingUserPageController">
+    <children>
+        <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
+            <children>
+                <Label layoutX="122.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="567.0" text="Пользовательский режим" textAlignment="CENTER" AnchorPane.leftAnchor="160.0">
+                    <font>
+                        <Font name="DejaVu Serif Condensed Bold" size="40.0" />
+                    </font>
+                </Label>
+                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToStartPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #DC143C;" text="❮">
+                    <font>
+                        <Font name="Calibri Bold" size="27.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+        <HBox prefHeight="510.0" prefWidth="900.0">
+            <children>
+                <TableView fx:id="GuestTable" prefHeight="100.0" prefWidth="634.0">
+                    <columns>
+                        <TableColumn fx:id="UserName_Col" prefWidth="104.80002021789551" text="Пользователь" />
+                        <TableColumn fx:id="Quote_Col" prefWidth="171.99999237060547" text="Цитата" />
+                        <TableColumn fx:id="Teacher_Col" prefWidth="118.39996337890625" text="Преподаватель" />
+                        <TableColumn fx:id="Subject_Col" minWidth="0.0" prefWidth="124.80007934570312" text="Предмет" />
+                        <TableColumn fx:id="Date_Col" maxWidth="237.60003051757815" prefWidth="111.20001220703125" text="Дата цитаты" />
+                    </columns>
+                </TableView>
+                <VBox prefHeight="510.0" prefWidth="268.0">
+                    <children>
+                        <Label fx:id="HelloLabel" contentDisplay="CENTER" maxWidth="200.0" text=" " textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets bottom="-20.0" left="30.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="DejaVu Serif Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="quoteField" promptText="Цитата...">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="50.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="teacherField" layoutX="30.0" layoutY="60.0" promptText="Преподаватель...">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="50.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="subjectField" layoutX="30.0" layoutY="136.0" promptText="Предмет...">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="50.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <DatePicker fx:id="dateField" prefHeight="26.0" prefWidth="226.0" promptText="Дата цитаты...">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="50.0" />
+                            </VBox.margin>
+                        </DatePicker>
+                        <Button fx:id="addButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Добавить">
+                            <VBox.margin>
+                                <Insets left="50.0" right="20.0" top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="updateButton" layoutX="60.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Изменить">
+                            <VBox.margin>
+                                <Insets left="50.0" right="20.0" top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="deleteButton" layoutX="60.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Удалить">
+                            <VBox.margin>
+                                <Insets left="50.0" right="20.0" top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

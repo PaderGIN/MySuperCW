@@ -57,6 +57,8 @@ public class GuestPageController {
         stage.show();
     }
 
+
+
     @FXML
     public void initialize() {
         UserName_Col.setCellValueFactory(new PropertyValueFactory<Quote, String>("user_name"));
@@ -70,12 +72,12 @@ public class GuestPageController {
 
     }
 
-    private static ObservableList<Quote> getQuoteFromDB() {
+    public static ObservableList<Quote> getQuoteFromDB() {
         Connection connection = DBconnector.getDBConnection();
         ObservableList<Quote> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement pr = connection.prepareStatement("SELECT Users.name as user_name," +
+            PreparedStatement pr = connection.prepareStatement("SELECT Quotes.id as id, Users.name as user_name," +
                     " q_text as q_text, Teacher.name as teacher_name," +
                     " Subjects.name as subject_name, date_of_said as date_of_said" +
                     " FROM Users JOIN Quotes on Users.id = Quotes.user_id" +
@@ -86,6 +88,7 @@ public class GuestPageController {
 
             while (rs.next()) {
                 Quote item = new Quote(
+                        rs.getInt("id"),
                         rs.getString("user_name"),
                         rs.getString("q_text"),
                         rs.getString("teacher_name"),

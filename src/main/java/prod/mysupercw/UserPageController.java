@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class UserPageController {
-    static User authUser;
+    private static User authUser;
     private Stage stage;
     private Scene scene;
     private Parent parent;
@@ -219,10 +219,27 @@ public class UserPageController {
     }
 
     @FXML
-    private void switchToStart(ActionEvent event) throws IOException {
+    private void switchToStartPage(ActionEvent event) throws IOException {
         parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void switchToWorkingPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("WorkingUserPage.fxml"));
+        parent = loader.load();
+        scene = new Scene(parent);
+        WorkingUserPageController controller = loader.getController();
+        try {
+            controller.initWork(authUser);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         stage.setScene(scene);
         stage.show();
     }

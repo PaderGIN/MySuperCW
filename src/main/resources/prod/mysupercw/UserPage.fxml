@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17"
+      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.UserPageController">
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
@@ -27,7 +27,7 @@
                     </font>
                 </Label>
                 <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0"
-                        mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0"
+                        mnemonicParsing="false" onAction="#switchToStartPage" prefHeight="50.0" prefWidth="50.0"
                         style="-fx-background-color: #DC143C;" text="❮">
                     <font>
                         <Font name="Calibri Bold" size="27.0"/>
@@ -104,6 +104,22 @@
                                 <Insets left="25.0" top="20.0"/>
                             </VBox.margin>
                         </GridPane>
+                        <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#switchToWorkingPage"
+                                prefHeight="41.0" prefWidth="217.0" style="-fx-background-color: #FFA07A;"
+                                text="Перейти к записям" textAlignment="CENTER">
+                            <font>
+                                <Font name="Calibri Bold" size="21.0"/>
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <effect>
+                                <DropShadow/>
+                            </effect>
+                            <VBox.margin>
+                                <Insets left="140.0" top="115.0"/>
+                            </VBox.margin>
+                        </Button>
                     </children>
                 </VBox>
                 <VBox maxWidth="441.0" prefHeight="510.0" prefWidth="441.0">
