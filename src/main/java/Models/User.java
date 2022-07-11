@@ -1,5 +1,8 @@
 package Models;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class User {
     private int id;
     private String name;
@@ -65,6 +68,16 @@ public class User {
 
     public void setRole(Roles role) {
         this.role = role;
+    }
+
+    public static String getHashPassFromPass(String pass) throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        byte[] bytes = messageDigest.digest(pass.getBytes());
+        StringBuilder str = new StringBuilder();
+        for (byte b : bytes){
+            str.append(String.format("%01X",b));
+        }
+        return str.toString();
     }
 
 }
