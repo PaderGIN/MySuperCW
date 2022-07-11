@@ -10,63 +10,70 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.AuthorizationPageController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.AuthorizationPageController">
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
             <children>
-                <Label layoutX="309.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="282.0" text="Авторизация" textAlignment="CENTER">
+                <Label layoutX="309.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="282.0"
+                       text="Авторизация" textAlignment="CENTER">
                     <font>
-                        <Font name="DejaVu Serif Condensed Bold" size="40.0" />
+                        <Font name="DejaVu Serif Condensed Bold" size="40.0"/>
                     </font>
                 </Label>
-                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #DC143C;" text="❮">
+                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0"
+                        mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0"
+                        style="-fx-background-color: #DC143C;" text="❮">
                     <font>
-                        <Font name="Calibri Bold" size="27.0" />
+                        <Font name="Calibri Bold" size="27.0"/>
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                     <effect>
-                        <DropShadow />
+                        <DropShadow/>
                     </effect>
                 </Button>
             </children>
         </AnchorPane>
         <Label text="Введите данные" textAlignment="CENTER">
             <font>
-                <Font name="DejaVu Serif Bold" size="24.0" />
+                <Font name="DejaVu Serif Bold" size="24.0"/>
             </font>
             <VBox.margin>
-                <Insets left="330.0" top="100.0" />
+                <Insets left="330.0" top="100.0"/>
             </VBox.margin>
         </Label>
         <TextField fx:id="loginField" prefHeight="34.0" prefWidth="206.0" promptText="Логин...">
             <VBox.margin>
-                <Insets left="300.0" right="300.0" top="25.0" />
+                <Insets left="300.0" right="300.0" top="25.0"/>
             </VBox.margin>
         </TextField>
         <TextField fx:id="passwordField" prefHeight="34.0" prefWidth="206.0" promptText="Пароль...">
             <VBox.margin>
-                <Insets left="300.0" right="300.0" top="25.0" />
+                <Insets left="300.0" right="300.0" top="25.0"/>
             </VBox.margin>
         </TextField>
-        <Button fx:id="EnterButton" graphicTextGap="10.0" mnemonicParsing="false" onAction="#EnterCheckLoginPassword" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFA07A;" text="Войти" textAlignment="CENTER">
+        <Button fx:id="EnterButton" graphicTextGap="10.0" mnemonicParsing="false" onAction="#EnterCheckLoginPassword"
+                prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #FFA07A;" text="Войти"
+                textAlignment="CENTER">
             <font>
-                <Font name="Calibri Bold" size="21.0" />
+                <Font name="Calibri Bold" size="21.0"/>
             </font>
             <cursor>
-                <Cursor fx:constant="HAND" />
+                <Cursor fx:constant="HAND"/>
             </cursor>
             <effect>
-                <DropShadow />
+                <DropShadow/>
             </effect>
             <VBox.margin>
-                <Insets left="350.0" top="25.0" />
+                <Insets left="350.0" top="25.0"/>
             </VBox.margin>
         </Button>
         <Label fx:id="statusLabel">
             <VBox.margin>
-                <Insets left="435.0" top="50.0" />
+                <Insets left="435.0" top="50.0"/>
             </VBox.margin>
         </Label>
     </children>
