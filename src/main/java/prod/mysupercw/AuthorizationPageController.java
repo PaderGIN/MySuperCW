@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import static Models.User.getHashPassFromPass;
+
 
 public class AuthorizationPageController {
 
@@ -86,7 +88,7 @@ public class AuthorizationPageController {
                     " FROM Users" +
                     " WHERE login = ? and Users.password = ?;");
             statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
+            statement.setString(2, getHashPassFromPass(user.getPassword()));
             statement.executeQuery();
             ResultSet resultSet = statement.getResultSet();
             if (resultSet.next()) {

@@ -14,10 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
+
+import static Models.User.getHashPassFromPass;
 
 public class UserPageController {
     private static User authUser;
@@ -197,13 +200,13 @@ public class UserPageController {
             try {
                 PreparedStatement prStatement;
                 prStatement = DBconnector.getDBConnection().prepareStatement("UPDATE Users SET password = ? WHERE id = ? ;");
-                prStatement.setString(1, NewPasswordField.getText());
+                prStatement.setString(1, getHashPassFromPass(NewPasswordField.getText()));
                 prStatement.setInt(2, authUser.getId());
                 prStatement.executeUpdate();
                 statusLabel.setText("Пароль изменен на " + NewPasswordField.getText());
                 NewPasswordField.setText("");
                 authUser = new User(authUser.getId(), authUser.getName(), authUser.getLogin(), passwordStr, authUser.getRole());
-            } catch (SQLException e) {
+            } catch (SQLException | NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
         }

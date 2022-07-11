@@ -1,6 +1,7 @@
 package prod.mysupercw;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
@@ -16,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import static Models.User.getHashPassFromPass;
 
 public class RegistrationPageController {
 
@@ -90,7 +93,7 @@ public class RegistrationPageController {
             prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Users(name, password, login) VALUES" +
                     "(?,?,?);");
             prStatement.setString(1, user.getName());
-            prStatement.setString(2, user.getPassword());
+            prStatement.setString(2, getHashPassFromPass(user.getPassword()));
             prStatement.setString(3, user.getLogin());
             prStatement.executeUpdate();
 //            statement.executeUpdate("INSERT Users(name, password, role_level, login) VALUES" +
@@ -98,7 +101,7 @@ public class RegistrationPageController {
             notifycationLabel.setText("Пользователь успешно зарегистрирован!");
             EnterButtonToUserPage.setVisible(true);
 
-        } catch (SQLException exception) {
+        } catch (SQLException | NoSuchAlgorithmException exception) {
             notifycationLabel.setText("Пользователь с таким логином уже есть! Введите другой!");
         }
     }
