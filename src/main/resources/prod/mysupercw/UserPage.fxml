@@ -27,7 +27,7 @@
                     </font>
                 </Label>
                 <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0"
-                        mnemonicParsing="false" onAction="#switchToStartPage" prefHeight="50.0" prefWidth="50.0"
+                        mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0"
                         style="-fx-background-color: #DC143C;" text="❮">
                     <font>
                         <Font name="Calibri Bold" size="27.0"/>

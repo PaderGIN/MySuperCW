@@ -77,21 +77,34 @@
                                 <Insets left="20.0" right="20.0" top="50.0" />
                             </VBox.margin>
                         </DatePicker>
-                        <Button fx:id="addButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Добавить">
+                  <Button fx:id="takeButton" layoutX="60.0" layoutY="364.0" mnemonicParsing="false" onAction="#takeQuote" prefHeight="26.0" prefWidth="163.0" text="Взять запись">
+                     <VBox.margin>
+                        <Insets left="50.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#AddQuote" prefHeight="26.0" prefWidth="163.0" text="Добавить">
                             <VBox.margin>
                                 <Insets left="50.0" right="20.0" top="20.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="updateButton" layoutX="60.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Изменить">
+                        <Button fx:id="updateButton" layoutX="60.0" layoutY="335.0" mnemonicParsing="false" onAction="#updateQuote" prefHeight="26.0" prefWidth="163.0" text="Изменить">
                             <VBox.margin>
                                 <Insets left="50.0" right="20.0" top="20.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="deleteButton" layoutX="60.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="Удалить">
+                        <Button fx:id="deleteButton" layoutX="60.0" layoutY="381.0" mnemonicParsing="false" onAction="#deleteQuote" prefHeight="26.0" prefWidth="163.0" text="Удалить">
                             <VBox.margin>
                                 <Insets left="50.0" right="20.0" top="20.0" />
                             </VBox.margin>
                         </Button>
+                  <Label fx:id="statusLabel">
+                     <font>
+                        <Font name="DejaVu Sans Mono Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
                     </children>
                 </VBox>
             </children>

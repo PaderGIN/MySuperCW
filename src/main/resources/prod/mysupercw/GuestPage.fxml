@@ -11,43 +11,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-      prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.GuestPageController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFDAB9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prod.mysupercw.GuestPageController">
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: #FFA07A;">
             <children>
-                <Label layoutX="272.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="387.0"
-                       text="Гостевой режим" textAlignment="CENTER">
+                <Label layoutX="272.0" layoutY="15.0" lineSpacing="5.0" prefHeight="60.0" prefWidth="387.0" text="Гостевой режим" textAlignment="CENTER">
                     <font>
-                        <Font name="DejaVu Serif Condensed Bold" size="40.0"/>
+                        <Font name="DejaVu Serif Condensed Bold" size="40.0" />
                     </font>
                 </Label>
-                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0"
-                        mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0"
-                        style="-fx-background-color: #DC143C;" text="❮">
+                <Button fx:id="ToStartButton" graphicTextGap="10.0" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToStart" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #DC143C;" text="❮">
                     <font>
-                        <Font name="Calibri Bold" size="27.0"/>
+                        <Font name="Calibri Bold" size="27.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                     <effect>
-                        <DropShadow/>
+                        <DropShadow />
                     </effect>
                 </Button>
             </children>
         </AnchorPane>
         <TableView fx:id="GuestTable" prefHeight="469.0" prefWidth="732.0">
             <columns>
-                <TableColumn fx:id="UserName_Col" prefWidth="118.4000186920166" text="Пользователь"/>
-                <TableColumn fx:id="Quote_Col" prefWidth="327.1999816894531" text="Цитата"/>
-                <TableColumn fx:id="Teacher_Col" prefWidth="161.60006713867188" text="Преподаватель"/>
-                <TableColumn fx:id="Subject_Col" prefWidth="150.39996337890625" text="Предмет"/>
-                <TableColumn fx:id="Date_Col" prefWidth="104.7999267578125" text="Дата цитаты"/>
+                <TableColumn fx:id="UserName_Col" prefWidth="118.4000186920166" text="Пользователь" />
+                <TableColumn fx:id="Quote_Col" prefWidth="327.1999816894531" text="Цитата" />
+                <TableColumn fx:id="Teacher_Col" prefWidth="161.60006713867188" text="Преподаватель" />
+                <TableColumn fx:id="Subject_Col" prefWidth="150.39996337890625" text="Предмет" />
+                <TableColumn fx:id="Date_Col" prefWidth="104.7999267578125" text="Дата цитаты" />
             </columns>
             <VBox.margin>
-                <Insets left="20.0" right="20.0" top="20.0"/>
+                <Insets left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
         </TableView>
     </children>

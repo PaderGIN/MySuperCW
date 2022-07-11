@@ -209,7 +209,7 @@ public class UserPageController {
         }
     }
 
-    private static boolean test(String str) {
+    public static boolean test(String str) {
         String text = str;
         if (Pattern.matches("[a-zA-Zа-яА-Я .]+", text)) {
             return true;
@@ -218,14 +218,6 @@ public class UserPageController {
         }
     }
 
-    @FXML
-    private void switchToStartPage(ActionEvent event) throws IOException {
-        parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
-    }
     @FXML
     private void switchToWorkingPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -244,4 +236,11 @@ public class UserPageController {
         stage.show();
     }
 
+    public void switchToStart(ActionEvent event) throws IOException {
+        parent = FXMLLoader.load(getClass().getResource("StartPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

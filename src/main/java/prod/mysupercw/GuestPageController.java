@@ -28,7 +28,7 @@ public class GuestPageController {
     private Parent root;
 
     @FXML
-    private TableView<Quote> GuestTable;
+    public TableView<Quote> GuestTable;
     @FXML
     private TableColumn<Quote, String> Date_Col;
 
@@ -60,7 +60,7 @@ public class GuestPageController {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         UserName_Col.setCellValueFactory(new PropertyValueFactory<Quote, String>("user_name"));
         Quote_Col.setCellValueFactory(new PropertyValueFactory<Quote, String>("q_text"));
         Teacher_Col.setCellValueFactory(new PropertyValueFactory<Quote, String>("teacher_name"));
@@ -72,7 +72,7 @@ public class GuestPageController {
 
     }
 
-    public static ObservableList<Quote> getQuoteFromDB() {
+    public static ObservableList<Quote> getQuoteFromDB() throws SQLException {
         Connection connection = DBconnector.getDBConnection();
         ObservableList<Quote> list = FXCollections.observableArrayList();
 
@@ -98,8 +98,10 @@ public class GuestPageController {
                 list.add(item);
 
             }
+            connection.close();
 
         } catch (SQLException e) {
+            connection.close();
             throw new RuntimeException(e);
         }
         return list;

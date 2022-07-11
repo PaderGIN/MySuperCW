@@ -70,7 +70,6 @@ public class RegistrationPageController {
 
         } else if (!test(nameStr)){
             notifycationLabel.setText("В поле имя не могут быть числа/спецсимволы!");
-
         } else {
             user = new User(nameStr, loginStr, passwordStr_1);
             SignUpUser(user);
