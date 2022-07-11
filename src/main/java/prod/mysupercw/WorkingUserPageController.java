@@ -3,6 +3,7 @@ package prod.mysupercw;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -64,7 +65,7 @@ public class WorkingUserPageController extends GuestPageController {
     private Button takeButton;
 
     @FXML
-    void takeQuote(ActionEvent event)  {
+    void takeQuote(ActionEvent event) {
         try {
             ObservableList<Quote> quote;
             quote = super.GuestTable.getSelectionModel().getSelectedItems();
@@ -75,7 +76,7 @@ public class WorkingUserPageController extends GuestPageController {
             dateField.setValue(LocalDate.parse((quote.get(0).getDate_of_said())));
             selectedQuote = quote.get(0);
             statusLabel.setText("");
-        } catch (Exception e){
+        } catch (Exception e) {
             statusLabel.setText("Вы ничего не выбрали!");
         }
 
@@ -92,39 +93,95 @@ public class WorkingUserPageController extends GuestPageController {
         stage.show();
     }
 
+    private boolean checkAcsess() {
+        System.out.println(workUser.getRole());
+        if ((workUser.getRole().toString().equals("admin")) ||
+                (workUser.getId() == getIdUfromIdQ(selectedQuote)) ||
+                (cheifUnderCheking())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean cheifUnderCheking() {
+        int temp = 0;
+        try {
+            PreparedStatement prStatement;
+            prStatement = DBconnector.getDBConnection().prepareStatement("SELECT COUNT(*)" +
+                    " from Chief_Under" +
+                    " WHERE chief = ? and under = ?;");
+            prStatement.setInt(1, workUser.getId());
+            prStatement.setInt(2, getIdUfromIdQ(selectedQuote));
+            prStatement.execute();
+            ResultSet resultSet = prStatement.getResultSet();
+
+            if (resultSet.next()) {
+                temp = resultSet.getInt(1);
+            }
+            if (temp == 0) {
+                return false;
+            } else return true;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private int getIdUfromIdQ(Quote selectedQuote) {
+        int ans = 0;
+        try {
+            PreparedStatement prStatement;
+            prStatement = DBconnector.getDBConnection().prepareStatement("SELECT user_id" +
+                    "    FROM Quotes" +
+                    "    WHERE id = ?;");
+            prStatement.setInt(1, selectedQuote.getId());
+            prStatement.execute();
+            ResultSet resultSet = prStatement.getResultSet();
+            if (resultSet.next()) {
+                ans = resultSet.getInt(1);
+            }
+            return ans;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
     @FXML
     private void AddQuote() { //буфферы создания
-//        String userName = workUser.getName().trim();
-//        String quoteText = quoteField.getText().trim();
-//        String teacherName = teacherField.getText().trim();
-//        String subjectName = subjectField.getText().trim();
-//        String date = dateField.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//
-//        if (userName.trim().equals("") ||
-//                quoteText.trim().equals("") ||
-//                teacherName.trim().equals("") ||
-//                subjectName.trim().equals("") ||
-//                date.trim().equals("")) {
-//            statusLabel.setText("Все поля должны быть заполнены");
-//        } else if (!isQuote(quoteText)) {
-//            statusLabel.setText("Пользователя с таким именем нет!");
-//        } else {
-//            createNewQuote();
-//        }
         RealAddQuote();
     }
 
 
     @FXML
     private void updateQuote() { //буфферы апдейта
-        RealUpdateQuote();
+        if (checkAcsess() == true) {
+            RealUpdateQuote();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Нет доступа!");
+            alert.setTitle("");
+            alert.show();
+            clearFields();
+        }
     }
 
     @FXML
     private void deleteQuote() { //буфферы удаления
-        realDeleteQuote();
+        if (checkAcsess() == true) {
+            realDeleteQuote();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Нет доступа!");
+            alert.setTitle("");
+            alert.show();
+            clearFields();
+        }
     }
-    private void RealAddQuote(){
+
+    private void RealAddQuote() {
         try {
             PreparedStatement prStatement;
             prStatement = DBconnector.getDBConnection().prepareStatement("INSERT Quotes(user_id, q_text,teacher_id," +
@@ -147,7 +204,8 @@ public class WorkingUserPageController extends GuestPageController {
         }
 
     }
-    private void RealUpdateQuote(){
+
+    private void RealUpdateQuote() {
         try {
             PreparedStatement prStatement;
             prStatement = DBconnector.getDBConnection().prepareStatement("UPDATE Quotes SET Quotes.q_text = ?," +
@@ -170,7 +228,7 @@ public class WorkingUserPageController extends GuestPageController {
         }
     }
 
-    private void realDeleteQuote(){
+    private void realDeleteQuote() {
         try {
             PreparedStatement prStatement;
             prStatement = DBconnector.getDBConnection().prepareStatement("DELETE FROM Quotes WHERE id = ?;");
